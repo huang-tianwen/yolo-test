@@ -20,7 +20,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 		$router->post('/register', 'AuthController@register');
 		$router->post('/login', 'AuthController@login');
 	});
-	$router->group(['namespace'=>'User', 'middleware'=>'auth'], function () use ($router) {
+	$router->group(['namespace'=>'User', 'middleware'=>['auth']], function () use ($router) {
 		$router->get('/me', 'AuthController@me');
 		$router->get('/logout', 'AuthController@loutout');
 		$router->post('/users/search', 'UserController@search');
