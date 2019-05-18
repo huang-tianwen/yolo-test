@@ -36,22 +36,4 @@ class AuthControllerTest extends TestCase
         		'email' => 'tianwen.huang@hotmail.com',
              ]);
     }
-    public function testLogin()
-    {
-    	$user = factory(\App\Models\User::class)->create();
-        $client = DB::table('oauth_clients')->find(2);
-        $this->json('POST', 'api/login', 
-        	[
-        		'email' => $user->email,
-        		'password' => '123456',
-        		'client_id' => $client->id,
-        		'client_secret' => $client->secret,
-        	])
-            ->seeJsonStructure([
-                'token_type',
-                'expires_in',
-                'access_token',
-                'refresh_token',
-            ]);
-    }
 }
